@@ -23,7 +23,6 @@ public class Question implements Serializable{
 	@JoinColumn(name="optionId")
     private OptionList option;
 	
-	
 	@Column
 	private String questionTitle ;
 	
@@ -102,6 +101,15 @@ public class Question implements Serializable{
 		return chosenAnswer;
 	}
 
+
+        public OptionList getOption() {
+		return option;
+	}
+
+
+	public void setOption(OptionList option) {
+		this.option = option;
+	}
 
 	public void setChosenAnswer(Integer chosenAnswer) {
 		this.chosenAnswer = chosenAnswer;

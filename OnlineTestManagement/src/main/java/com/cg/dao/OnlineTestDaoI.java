@@ -17,4 +17,5 @@ public interface OnlineTestDaoI {
 	
 	public User getUser(BigInteger id);
 	public List<Test> getAllTest();
+        public List<Question> getQuestionList(BigInteger testId); 
 }

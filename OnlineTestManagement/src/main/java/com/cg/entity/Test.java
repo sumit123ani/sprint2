@@ -3,9 +3,13 @@ package com.cg.entity;
 import java.math.*;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,14 +23,19 @@ public class Test {
 	private String testTitle;
 	@Column
 	private String testDuration ;
-//	@Column
-//	private  Set<Question> testQuestions ;
+
+        @OneToMany(targetEntity = Question.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "test_fk", referencedColumnName = "testId")
+	private  Set<Question> testQuestions ;
+
 	@Column
 	private int testTotalMarks ;
 	@Column
 	private int testMarksScored ;
-//	@Column
-//	private Question currentQuestion ;
+
+	@Column
+	private Question currentQuestion ;
+
 	@Column
 	private String startTime ; 
 	@Column
@@ -82,14 +91,14 @@ public class Test {
 	}
 
 
-//	public Set<Question> getTestQuestions() {
-//		return testQuestions;
-//	}
-//
-//
-//	public void setTestQuestions(Set<Question> testQuestions) {
-//		this.testQuestions = testQuestions;
-//	}
+	public Set<Question> getTestQuestions() {
+		return testQuestions;
+	}
+
+
+	public void setTestQuestions(Set<Question> testQuestions) {
+		this.testQuestions = testQuestions;
+	}
 
 
 	public int getTestTotalMarks() {
@@ -112,14 +121,14 @@ public class Test {
 	}
 
 
-//	public Question getCurrentQuestion() {
-//		return currentQuestion;
-//	}
-//
-//
-//	public void setCurrentQuestion(Question currentQuestion) {
-//		this.currentQuestion = currentQuestion;
-//	}
+	public Question getCurrentQuestion() {
+		return currentQuestion;
+	}
+
+
+	public void setCurrentQuestion(Question currentQuestion) {
+		this.currentQuestion = currentQuestion;
+	}
 
 
 	public String getStartTime() {

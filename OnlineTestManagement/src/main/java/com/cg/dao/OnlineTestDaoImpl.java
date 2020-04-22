@@ -67,4 +67,10 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		return user1;
 	}
 
+       @Override
+	public List<Question> getQuestionList(BigInteger testId) {
+		// TODO Auto-generated method stub
+		Query query = manager.createQuery("from Question que where test_fk ="+testId);
+		return query.getResultList();
+	}
 }

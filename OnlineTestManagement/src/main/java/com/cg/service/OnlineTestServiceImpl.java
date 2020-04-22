@@ -53,4 +53,10 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		return dao.updateUser(user);
 	}
 
+       @Override
+	public List<Question> getQuestionList(BigInteger testId) {
+		// TODO Auto-generated method stub
+		return dao.getQuestionList(testId);
+	}
+
 }

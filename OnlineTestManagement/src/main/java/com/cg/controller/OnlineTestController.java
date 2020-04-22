@@ -30,11 +30,30 @@ public class OnlineTestController {
 		return "user created";
 	}
 	
+	
 	@PostMapping(value="/test/new", consumes= {"application/json"})
-	public void createTest(@RequestBody Test test)
+	public String createTest(@RequestBody Test test)
 	{
 		service.createTest(test);
+		return "test created";
 	}
+	
+	
+	@PostMapping(value="/question/new", consumes= {"application/json"})
+	public String createQuestion(@RequestBody Question question)
+	{
+		service.createQuestion(question);
+		return "question created";
+	}
+	
+	
+	@PostMapping(value="/option/new", consumes= {"application/json"})
+	public String createOption(@RequestBody OptionList option)
+	{
+		service.createOption(option);
+		return "added";
+	}
+
 	
 	@GetMapping(value="/test")
 	public List<Test> getTestList()
@@ -49,6 +68,14 @@ public class OnlineTestController {
 		return service.getUser(id);
 	}
 
+	
+	@GetMapping(value = "/question/{testId}")
+	public List<Question> getQuestionList(@PathVariable BigInteger testId)
+	{
+		return service.getQuestionList(testId);
+	}
+	
+	
 	@PutMapping(value="user/update",consumes= {"application/json"})
 	public String updateUser(@RequestBody User user)
 	{

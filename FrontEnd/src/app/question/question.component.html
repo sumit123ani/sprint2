@@ -1,0 +1,44 @@
+<h4>Add question</h4>
+
+<form #formdata="ngForm" (ngSubmit)="createQuestion()">
+    <table>
+
+          <tr>
+              <input type="number" name="id" placeholder="enter question id" [(ngModel)]="question.questionId" class="form-control">
+          </tr>
+<br>
+        <tr>
+            <input type="text" style="width: 400px;" name="title" placeholder="enter question title" [(ngModel)]="question.questionTitle" class="form-control">
+        </tr>
+        <br>
+
+        <tr>
+            <input type="text" name="option1" placeholder="enter option 1" [(ngModel)]="option.option1" class="form-control">
+        </tr>
+        <br>
+
+        <tr>
+            <input type="text" name="option2" placeholder="enter option 2" [(ngModel)]="option.option2" class="form-control">
+        </tr>
+        <br>
+
+        <tr>
+            <input type="text" name="option3" placeholder="enter option 3" [(ngModel)]="option.option3" class="form-control">
+        </tr>
+        <br>
+
+        <tr>
+            <input type="text" name="option4" placeholder="enter option 4" [(ngModel)]="option.option4" class="form-control">
+        </tr>
+        <br>
+
+        <tr>
+            <input type="number" name="marks" placeholder="enter marks" [(ngModel)]="question.questionMarks" class="form-control">
+        </tr>
+<br>
+    </table>
+
+<input type="submit" name="butt" class="btn btn-primary"> 
+<a routerLink="/test">now create the test</a>
+
+</form>

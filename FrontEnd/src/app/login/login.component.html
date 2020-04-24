@@ -1,0 +1,24 @@
+<h4>Login</h4>
+<br>
+<form #formdata="ngForm" (ngSubmit)="checkLogin()">
+
+  <table>
+
+      <tr>
+          <input type="number" name="id" placeholder="enter id" [(ngModel)]="id" class="form-control">
+      </tr>
+<br>
+      
+<tr>
+    <input type="password" name="password" placeholder="password" [(ngModel)]="password" class="form-control">
+</tr>
+<br>
+
+  </table>
+
+  <br>
+<input type="submit" name="submit" class="btn btn-secondary">
+<br>
+<a routerLink="/register">Dont have a account? Register</a>
+
+</form>

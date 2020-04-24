@@ -1,0 +1,36 @@
+<h4>Register</h4>
+<br>
+<form #formdata="ngForm" (ngSubmit)="createUser()">
+
+  <table>
+
+      <tr>
+          <input type="number" name="id" placeholder="enter id" [(ngModel)]="user.userId" class="form-control">
+      </tr>
+<br>
+      <tr>
+          <input type="text" name="name" placeholder="enter name" [(ngModel)]="user.userName" class="form-control">
+      </tr>
+<br>
+
+      <tr>
+        <input type="number" name="mobile_no" placeholder="enter mobile number" [(ngModel)]="user.mobile_no" class="form-control">
+    </tr>
+<br>
+
+<tr>
+    <input type="text" name="email" placeholder="enter email address" [(ngModel)]="user.email" class="form-control">
+</tr>
+<br>
+
+<tr>
+    <input type="password" name="password" placeholder="password" [(ngModel)]="user.userPassword" class="form-control">
+</tr>
+<br>
+
+  </table>
+
+  <br>
+<input type="submit" name="submit" class="btn btn-secondary">
+
+</form>

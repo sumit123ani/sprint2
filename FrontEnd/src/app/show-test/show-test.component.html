@@ -1,0 +1,38 @@
+<form #formdata="ngForm" (ngSubmit)="submit()">
+    <select name="select" class="form-control" [(ngModel)]="testType" aria-placeholder="select">
+        <option value="select">select</option>
+        <option value="java">java</option>
+        <option value="sql">sql</option>
+        <option value="maths">maths</option>
+        <option value="chemistry">chemistry</option>
+        <option value="query">query</option>
+    </select>
+
+    <br>
+    <input type="submit" name="butt" class="btn btn-primary">
+</form>
+<br><br>
+
+<table class="table table-stripped" style="width: fit-content;">
+    <thead class="thead-dark">
+        <tr *ngIf="tests1">
+            <th>id</th>
+            <th>title</th>
+            <th>duration</th>
+            <th>total marks</th>
+            <th>start time</th>
+            <th>end time</th>
+        </tr>
+    </thead>
+
+        <tr *ngFor="let tst of tests1 ; let i = index">
+            <td>{{tst.testId}}</td>
+            <td>{{tst.testTitle}}</td>
+            <td>{{tst.testDuration}}</td>
+            <td>{{tst.testTotalMarks}}</td>
+            <td>{{tst.startTime}}</td>
+            <td>{{tst.endTime}}</td>
+            <td><a class="btn btn-primary" routerLink="/attempTest" (click)="giveTest(i)">Give test</a></td>
+        </tr>
+    
+</table>

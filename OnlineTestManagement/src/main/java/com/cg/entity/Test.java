@@ -23,21 +23,24 @@ public class Test {
 	private String testTitle;
 	@Column
 	private String testDuration ;
-
-        @OneToMany(targetEntity = Question.class, cascade = CascadeType.ALL)
+	
+	@OneToMany(targetEntity = Question.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "test_fk", referencedColumnName = "testId")
 	private  Set<Question> testQuestions ;
-
+	
 	@Column
 	private int testTotalMarks ;
+	
 	@Column
 	private int testMarksScored ;
-
-	@Column
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "questionId")
 	private Question currentQuestion ;
-
+	
 	@Column
 	private String startTime ; 
+	
 	@Column
 	private String endTime ;
 	

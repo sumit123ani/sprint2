@@ -3,12 +3,15 @@ package com.cg.entity;
 import java.io.Serializable;
 import java.math.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,10 +22,13 @@ public class Question implements Serializable{
 	@Id
 	private BigInteger questionId ; 
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="optionId")
-    private OptionList option;
+//	@OneToOne(fetch = FetchType.LAZY, targetEntity = OptionList.class, cascade=CascadeType.ALL)
+//	@JoinColumn(name="optionId", insertable = false, updatable = false)
+//    private OptionList option;
 	
+	@Column(name = "options")
+	private String[] option;
+
 	@Column
 	private String questionTitle ;
 	
@@ -76,6 +82,16 @@ public class Question implements Serializable{
 		this.questionTitle = questionTitle;
 	}
 
+	
+	public String[] getOption() {
+		return option;
+	}
+
+
+	public void setOption(String[] option) {
+		this.option = option;
+	}
+
 
 	public Integer getQuestionAnswer() {
 		return questionAnswer;
@@ -102,21 +118,13 @@ public class Question implements Serializable{
 	}
 
 
-        public OptionList getOption() {
-		return option;
-	}
-
-
-	public void setOption(OptionList option) {
-		this.option = option;
-	}
-
 	public void setChosenAnswer(Integer chosenAnswer) {
 		this.chosenAnswer = chosenAnswer;
 	}
 
 
 	public BigDecimal getMarksScored() {
+		
 		return marksScored;
 	}
 
@@ -124,6 +132,17 @@ public class Question implements Serializable{
 	public void setMarksScored(BigDecimal marksScored) {
 		this.marksScored = marksScored;
 	}
+
+	
+
+//	public OptionList getOption() {
+//		return option;
+//	}
+//
+//
+//	public void setOption(OptionList option) {
+//		this.option = option;
+//	}
 
 
 	@Override

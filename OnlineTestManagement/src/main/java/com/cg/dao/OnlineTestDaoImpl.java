@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.cg.entity.Question;
 import com.cg.entity.Test;
 import com.cg.entity.User;
@@ -67,10 +68,60 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		return user1;
 	}
 
-       @Override
+
+
+	@Override
+	public Test getTest(BigInteger id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<Question> getQuestionList(BigInteger testId) {
 		// TODO Auto-generated method stub
 		Query query = manager.createQuery("from Question que where test_fk ="+testId);
 		return query.getResultList();
 	}
+
+	
+	@Override
+	public List<Question> getAllQuestion() {
+
+        Query query = manager.createQuery("from Question que");
+		return query.getResultList();
+	}
+
+	@Override
+	public Question getOneQuestion(BigInteger questionId) {
+		
+		return manager.find(Question.class, questionId);
+	}
+
+	@Override
+	public void updateQuestion(Question question) {
+
+		Question newQuestion = manager.find(Question.class, question.getQuestionId());
+		
+		if(newQuestion != null)
+		{
+		//newQuestion.setQuestionId(question.getQuestionId());
+		newQuestion.setChosenAnswer(question.getChosenAnswer());
+		newQuestion.setMarksScored(question.getMarksScored());
+		newQuestion.setOption(question.getOption());
+		newQuestion.setQuestionMarks(question.getQuestionMarks());
+		newQuestion.setQuestionTitle(question.getQuestionTitle());
+		newQuestion.setQuestionAnswer(question.getQuestionAnswer());
+		}
+		
+	}
+
+	@Override
+	public void deleteQuestion(BigInteger questionId) {
+		
+		Question question = manager.find(Question.class, questionId);
+		manager.remove(question);
+	}
+
+	
+	
 }

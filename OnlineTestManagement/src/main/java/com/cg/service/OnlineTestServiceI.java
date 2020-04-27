@@ -14,9 +14,17 @@ public interface OnlineTestServiceI {
 	public void createTest(Test test);
 	public void createQuestion(Question question);
 
-    public String updateUser(User user);	
 	
+    public String updateUser(User user);	
+    public void updateQuestion(Question question);
+    
 	public User getUser(BigInteger id);
 	public List<Test> getAllTest();
-        public List<Question> getQuestionList(BigInteger testId);
+	public List<Question> getQuestionList(BigInteger testId);
+	
+	public List<Question> getAllQuestion();
+	public Question getOneQuestion(BigInteger questionId);
+	
+	
+	public void deleteQuestion(BigInteger questionId);
 }

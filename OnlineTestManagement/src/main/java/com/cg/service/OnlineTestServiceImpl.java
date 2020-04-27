@@ -20,19 +20,17 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	@Override
 	public void createUser(User user) {
 	   dao.createUser(user);
-	   System.out.println("user created");
+	
 	}
 
 	@Override
 	public void createTest(Test test) {
 		dao.createTest(test);
-		System.out.println("test created");
 	}
 
 	@Override
 	public void createQuestion(Question question) {
 		dao.createQuestion(question);
-		System.out.println("question created");
 	}
 
 	@Override
@@ -53,10 +51,37 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		return dao.updateUser(user);
 	}
 
-       @Override
+	
+
+	@Override
 	public List<Question> getQuestionList(BigInteger testId) {
-		// TODO Auto-generated method stub
+		
 		return dao.getQuestionList(testId);
 	}
 
+	@Override
+	public List<Question> getAllQuestion() {
+		
+		return dao.getAllQuestion();
+	}
+
+	@Override
+	public Question getOneQuestion(BigInteger questionId) {
+		
+		return dao.getOneQuestion(questionId);
+	}
+
+	@Override
+	public void updateQuestion(Question question) {
+		dao.updateQuestion(question);
+		
+	}
+
+	@Override
+	public void deleteQuestion(BigInteger questionId) {
+		dao.deleteQuestion(questionId);
+		
+	}
+
+	
 }

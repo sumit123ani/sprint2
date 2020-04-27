@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.entity.Question;
 import com.cg.entity.Test;
 import com.cg.entity.User;
 import com.cg.service.OnlineTestServiceI;

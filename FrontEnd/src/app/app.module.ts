@@ -14,6 +14,7 @@ import { QuestionComponent } from './question/question.component';
 import { ShowTestComponent } from './show-test/show-test.component';
 import { AttempTestComponent } from './attemp-test/attemp-test.component';
 import { ViewTestComponent } from './view-test/view-test.component';
+import { UpdateTestComponent } from './update-test/update-test.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ViewTestComponent } from './view-test/view-test.component';
     QuestionComponent,
     ShowTestComponent,
     AttempTestComponent,
-    ViewTestComponent
+    ViewTestComponent,
+    UpdateTestComponent
   ],
   imports: [
     BrowserModule,

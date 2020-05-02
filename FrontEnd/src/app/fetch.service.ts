@@ -98,6 +98,11 @@ questions:Question[]=[];
    return this._http.delete(url, {responseType:'text'});
   }
 
+  deleteTest(testId:number):Observable<any>
+  {
+    let url = "http://localhost:1998/test/delete/"+testId;
+    return this._http.delete(url, {responseType:'text'});
+  }
 
  updateQuestion(quest:Question):Observable<any>
  {

@@ -138,7 +138,7 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 			newTest.setStartTime(test.getStartTime());
 			newTest.setEndTime(test.getEndTime());
 			
-			newTest.setTestMarksScored(test.getTestMarksScored());
+			//newTest.setTestMarksScored(test.getTestMarksScored());
 			//newTest.setTestQuestions(test.getTestQuestions());
 			
 			newTest.setTestTotalMarks(test.getTestTotalMarks());
@@ -156,6 +156,12 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		
      Test newTest  = manager.find(Test.class, test.getTestId());
 		newTest.setTestMarksScored(test.getTestMarksScored());
+	}
+
+	@Override
+	public void deleteTest(int testId) {
+		
+		manager.remove(manager.find(Test.class, testId));
 	}
 
 	

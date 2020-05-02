@@ -143,5 +143,13 @@ public class OnlineTestController {
 		service.deleteQuestion(questionId);
 		return "deleted";
 	}
+	
+	
+	@DeleteMapping(value ="test/delete/{testId}")
+	public String deleteTest(@PathVariable int testId)
+	{
+		service.deleteTest(testId);
+		return "deletetd successfully"	;
+		}
 }
 

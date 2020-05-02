@@ -30,4 +30,5 @@ public interface OnlineTestServiceI {
 	
 	
 	public void deleteQuestion(BigInteger questionId);
+	public void deleteTest(int testId);
 }

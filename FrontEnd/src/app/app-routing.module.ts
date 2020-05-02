@@ -7,13 +7,16 @@ import { QuestionComponent } from './question/question.component';
 
 import { ShowTestComponent } from './show-test/show-test.component';
 import { AttempTestComponent } from './attemp-test/attemp-test.component';
+import { ViewTestComponent } from './view-test/view-test.component';
+import { UpdateTestComponent } from './update-test/update-test.component';
 
 
 
 const routes: Routes = [{path: 'login', component:LoginComponent},
 {path: 'register', component:RegisterComponent}, {path: 'test', component:TestComponent},
 {path: 'question', component:QuestionComponent},
-{path: 'showTest', component:ShowTestComponent}, {path: 'attempTest', component:AttempTestComponent}];
+{path: 'showTest', component:ShowTestComponent}, {path: 'attempTest', component:AttempTestComponent},
+{path: 'viewTest', component:ViewTestComponent}, {path: 'updateTest', component:UpdateTestComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -21,4 +24,4 @@ const routes: Routes = [{path: 'login', component:LoginComponent},
 })
 export class AppRoutingModule { }
 export const routingcomponent =[LoginComponent, RegisterComponent, TestComponent, QuestionComponent,
-AttempTestComponent]
+AttempTestComponent, UpdateTestComponent, ViewTestComponent]

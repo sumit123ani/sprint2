@@ -29,5 +29,6 @@ public interface OnlineTestDaoI {
 	public Question getOneQuestion(BigInteger questionId);
 	
 	public void deleteQuestion(BigInteger questionId);
+	public void deleteTest(int testId);
 	
 }

@@ -97,5 +97,11 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		
 	}
 
+	@Override
+	public void deleteTest(int testId) {
+	
+	  dao.deleteTest(testId);	
+	}
+
 	
 }

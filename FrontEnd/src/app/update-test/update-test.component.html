@@ -1,0 +1,40 @@
+
+<div>
+    <h3>Update Test</h3>
+</div>
+
+<form #formdata="ngForm" (ngSubmit)="updateTest()">
+    <table>
+        <tr>
+            <td>Test Id</td>
+            <td><input type="number" value="test.testId" [(ngModel)]="test.testId" placeholder="enter id" name="id" class="form-control"></td>
+        </tr>
+<br>
+        <tr>
+            <td>Test Title</td>
+            <td><input type="text" value="test.testTitle" [(ngModel)]="test.testTitle" placeholder="enter title" name="title" class="form-control"></td>
+        </tr>
+<br>
+        <tr>
+            <td>Test Duration</td>
+            <td><input type="number" value="test.testDuration" [(ngModel)]="test.testDuration" placeholder="enter duration" name="duration" class="form-control"></td>
+        </tr>
+<br>
+        <tr>
+            <td>Total Marks</td>
+            <td><input type="number" value="test.testTotalMarks" [(ngModel)]="test.testTotalMarks" placeholder="enter marks" name="marks" class="form-control"></td>
+        </tr>
+<br>
+        <tr>
+            <td>Test Start Time</td>
+            <td><input type="datetime" value="test.startTime" [(ngModel)]="test.startTime" placeholder="enter start time" name="start" class="form-control"></td>
+        </tr>
+<br>
+        <tr>
+            <td>Test End Time</td>
+            <td><input type="datetime" value="test.endTime" [(ngModel)]="test.endTime" placeholder="enter end time" name="end" class="form-control"></td>
+        </tr>
+    </table>
+<br>
+<input type="submit" name="btt" class="btn btn-primary">
+</form>

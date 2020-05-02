@@ -3,7 +3,6 @@ import { Test } from '../test';
 import { NgForm } from '@angular/forms';
 import { FetchService } from '../fetch.service';
 import { Question } from '../question';
-import { Option } from '../option';
 
 @Component({
   selector: 'app-test',
@@ -19,46 +18,40 @@ export class TestComponent implements OnInit {
 
   test:Test = new Test();
   flag:boolean = false;
+  quest:Question[] = [];
 
-  name:string;
-
-  quests:Question[];
-
-  option:Option = new Option();
 
   ngOnInit(): void {
   }
 
  createTest()
  {
-    // this.quests = this.service.getAllQuestion();
-  
-    // alert(this.quests.length)
-   alert(this.name);
-  this.test.questions = this.quests;
+  this.quest = this.service.retrievQuest();
+  alert(this.quest.length)
 
-   this.service.createTest(this.test).subscribe(data=>
-    {    
-      alert("test added successfully");
-    },
-    error=>
-    {
-      alert("error")
-      console.log("error occured", error);
-      
-    });
+  alert(this.quest[0].questionId+" "+this.quest[1].questionId)
+
+  if(this.test.testQuestions.length == 0)
+  {
+
+    alert("please add some question to the test")
+   
+  }
+  else
+  {
+    this.service.createTest(this.test).subscribe(data=>
+      {    
+        alert("test added successfully");
+      },
+      error=>
+      {
+        alert("error")
+        console.log("error occured", error);
+        
+      });
+  }
  }
 
-  submit(){
-    alert(this.name);
-  }
-
-//  createQuestion()
-//  {
-//    this.quest.option = this.option;
-//    this.questions.push(this.quest);
-//    alert("question added succeessfully");
-//  }
 
   changeFlag() 
   {

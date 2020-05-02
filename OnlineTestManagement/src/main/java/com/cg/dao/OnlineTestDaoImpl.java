@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cg.entity.Question;
 import com.cg.entity.Test;
 import com.cg.entity.User;
+import com.cg.exception.OnlineTestException;
 
 @Repository
 @Transactional
@@ -45,7 +46,7 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 
 	@Override
 	public String updateUser(User user) {
-		// TODO Auto-generated method stub
+		
 		User user1 = manager.find(User.class, user.getUserId());
 		if(user1 != null)
 		{
@@ -53,7 +54,6 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 			user1.setUserName(user.getUserName());
 			user1.setUserPassword(user.getUserPassword());
 			user1.setIsAdmin(user.getIsAdmin());
-			
 			return "user updated succesfully";
 		}
 		else
@@ -72,13 +72,16 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 
 	@Override
 	public Test getTest(BigInteger id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
+	
+	
+	
 	@Override
 	public List<Question> getQuestionList(BigInteger testId) {
-		// TODO Auto-generated method stub
+		
 		Query query = manager.createQuery("from Question que where test_fk ="+testId);
 		return query.getResultList();
 	}
@@ -120,6 +123,39 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		
 		Question question = manager.find(Question.class, questionId);
 		manager.remove(question);
+	}
+
+	@Override
+	public void updateTest(Test test) throws OnlineTestException {
+		
+		Test newTest = manager.find(Test.class, test.getTestId())	;
+		
+		if(newTest != null)
+		{
+			newTest.setTestTitle(test.getTestTitle());
+			newTest.setTestDuration(test.getTestDuration());
+			
+			newTest.setStartTime(test.getStartTime());
+			newTest.setEndTime(test.getEndTime());
+			
+			newTest.setTestMarksScored(test.getTestMarksScored());
+			//newTest.setTestQuestions(test.getTestQuestions());
+			
+			newTest.setTestTotalMarks(test.getTestTotalMarks());
+			
+		}
+		
+		else
+		{
+			throw new OnlineTestException("No such test exists");
+		}
+	}
+
+	@Override
+	public void asignTest(Test test) {
+		
+     Test newTest  = manager.find(Test.class, test.getTestId());
+		newTest.setTestMarksScored(test.getTestMarksScored());
 	}
 
 	

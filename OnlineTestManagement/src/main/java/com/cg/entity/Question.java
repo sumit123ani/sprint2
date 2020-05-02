@@ -33,13 +33,13 @@ public class Question implements Serializable{
 	private String questionTitle ;
 	
 	@Column
-	private Integer questionAnswer ;
+	private String questionAnswer ;
 	
 	@Column
 	private BigDecimal questionMarks ;
 	
 	@Column
-	private Integer chosenAnswer ;
+	private String chosenAnswer ;
 	
 	@Column
 	private BigDecimal marksScored ; 
@@ -52,7 +52,7 @@ public class Question implements Serializable{
 
 
 	public Question(BigInteger questionId, String questionTitle,
-			Integer questionAnswer, BigDecimal questionMarks, Integer chosenAnswer, BigDecimal marksScored) {
+			String questionAnswer, BigDecimal questionMarks, String chosenAnswer, BigDecimal marksScored) {
 		super();
 		this.questionId = questionId;
 		this.questionTitle = questionTitle;
@@ -93,12 +93,12 @@ public class Question implements Serializable{
 	}
 
 
-	public Integer getQuestionAnswer() {
+	public String getQuestionAnswer() {
 		return questionAnswer;
 	}
 
 
-	public void setQuestionAnswer(Integer questionAnswer) {
+	public void setQuestionAnswer(String questionAnswer) {
 		this.questionAnswer = questionAnswer;
 	}
 
@@ -113,12 +113,12 @@ public class Question implements Serializable{
 	}
 
 
-	public Integer getChosenAnswer() {
+	public String getChosenAnswer() {
 		return chosenAnswer;
 	}
 
 
-	public void setChosenAnswer(Integer chosenAnswer) {
+	public void setChosenAnswer(String chosenAnswer) {
 		this.chosenAnswer = chosenAnswer;
 	}
 

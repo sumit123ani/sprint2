@@ -7,5 +7,7 @@ export class Test {
     testDuration:string;
     startTime:string;
     endTime:string;
-    questions:Question[];
+    testQuestions:Question[]=[];
+    testTotalMarks:number;
+    testMarksScored:number;
 }

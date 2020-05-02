@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Test } from '../test';
 import { FetchService } from '../fetch.service';
+import { User } from '../user';
+import { AuthenticationService } from '../authentication.service';
+import { error } from '@angular/compiler/src/util';
+import { Question } from '../question';
 
 
 @Component({
@@ -10,37 +14,73 @@ import { FetchService } from '../fetch.service';
 })
 export class ShowTestComponent implements OnInit {
 
-  constructor(private service:FetchService) { }
+  constructor(private service:FetchService, private serv:AuthenticationService) { }
 
+  user:User = new User();
   testType:any;
   test:Test = new Test();
   tests:Test[];
   tests1:Test[];
+  question:Question = new Question();
 
   ngOnInit(): void {
+
+   this.user = this.serv.getUser();
+   
+   this.service.getTestList().subscribe(data=>
+    {
+      this.tests = data;
+    },
+    error=>
+    {
+      console.log("error occured", error);
+    });
   }
 
   submit()
   {
     //alert(this.testType)
-    this.service.getTestList().subscribe(data=>
-      {
-        this.tests = data
+    
+        // alert(this.tests[3].testTitle);
+         this.tests = this.tests.filter((t) => t.testTitle.startsWith("java"));
 
-         this.tests1 = this.tests.filter(t => t.testTitle == this.testType+" test");
-        // alert(this.tests[0].testTitle)
+         alert(this.tests[0].testTitle)
 
-      },
-      error=>
-      {
-        console.log("error occured", error);
-        
-      });
   }
 
    giveTest(index:number)
    {
-     this.service.setTest(this.tests1[index]);
+     this.service.setTest(this.tests[index]);
+     this.tests[index].testMarksScored = null;
+     this.service.assignTest(this.tests[index]).subscribe(data=>
+      {
+        console.log("assigned");
+        
+      },
+      error=>{
+    console.log(error);
+    alert("can not assign");
+
+      });
+
+ 
+      for(var i =0; i<this.tests[index].testQuestions.length; i++)
+      {
+        this.question = this.tests[index].testQuestions[i];
+        this.question.chosenAnswer = null;
+        this.question.marksScored =null;
+        this.service.updateQuestion(this.question).subscribe(data=>
+          {
+            console.log("successfull");
+            
+          },
+          error=>{
+              console.log("not successful");
+              
+          })
+      }
+  
+
    } 
 
 }

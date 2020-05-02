@@ -23,7 +23,7 @@ import com.cg.entity.User;
 import com.cg.exception.OnlineTestException;
 import com.cg.service.OnlineTestServiceI;
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 @RestController
 public class OnlineTestController {
 
@@ -88,7 +88,7 @@ public class OnlineTestController {
 	}
 
 	
-	@GetMapping(value = "/question/{testId}")
+	@GetMapping(value = "/question/list/{testId}")
 	public List<Question> getQuestionList(@PathVariable BigInteger testId)
 	{
 		return service.getQuestionList(testId);
@@ -121,6 +121,21 @@ public class OnlineTestController {
 		return "question updated";
 	}
 	
+	
+	@PutMapping(value = "test/update", consumes = {"application/json"})
+	public String updateTest(@RequestBody Test test) throws OnlineTestException
+	{
+		service.updateTest(test);
+		return "updated successfully";
+	}
+	
+	
+	@PutMapping(value = "assign/test", consumes = {"application/json"})
+	public String assignTest(@RequestBody Test test)
+	{
+		service.asignTest(test);
+		return "test assigned";
+	}
 	
 	@DeleteMapping(value = "question/delete/{questionId}")
 	public String deleteQuestion(@PathVariable BigInteger questionId)

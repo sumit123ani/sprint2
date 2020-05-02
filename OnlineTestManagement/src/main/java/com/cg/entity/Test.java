@@ -1,5 +1,6 @@
 package com.cg.entity;
 
+import java.io.Serializable;
 import java.math.*;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="test_table2")
-public class Test {
+public class Test implements Serializable{
 
 	@Id
 	private int testId ;

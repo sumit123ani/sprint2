@@ -10,6 +10,7 @@ import com.cg.dao.OnlineTestDaoI;
 import com.cg.entity.Question;
 import com.cg.entity.Test;
 import com.cg.entity.User;
+import com.cg.exception.OnlineTestException;
 
 @Service
 public class OnlineTestServiceImpl implements OnlineTestServiceI {
@@ -80,6 +81,19 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	@Override
 	public void deleteQuestion(BigInteger questionId) {
 		dao.deleteQuestion(questionId);
+		
+	}
+
+	@Override
+	public void updateTest(Test test) throws OnlineTestException {
+		
+		dao.updateTest(test);
+	}
+
+	@Override
+	public void asignTest(Test test) {
+
+        dao.asignTest(test);
 		
 	}
 

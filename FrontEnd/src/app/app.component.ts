@@ -44,10 +44,13 @@ logout()
  changeFlag()
  {
    if(this.flag)
-     this.flag = false;
-   else
-     this.flag = true;  
+     this.flag = false;  
  }
 
+ changeFlag1()
+ {
+   if(!this.flag)
+     this.flag = true;
+ }
 
 }

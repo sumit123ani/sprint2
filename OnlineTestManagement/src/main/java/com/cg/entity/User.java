@@ -1,5 +1,6 @@
 package com.cg.entity;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="userTable2")
-public class User {
+public class User implements Serializable{
 
 	@Id
 	private BigInteger userId;

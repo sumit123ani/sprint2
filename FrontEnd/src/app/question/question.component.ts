@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Question } from '../question';
 import { NgForm } from '@angular/forms';
 import { FetchService } from '../fetch.service';
-import { Option } from '../option';
 
 
 @Component({
@@ -18,26 +17,26 @@ export class QuestionComponent implements OnInit {
   constructor(private service:FetchService) { }
 
   question:Question = new Question();
-  option:Option = new Option();
+  questions:Question[] =[];
 
   ngOnInit(): void {
   }
 
   createQuestion()
   {
-     this.question.option = this.option;
-    
-    //  this.service.createQuestion(this.question).subscribe(data=>
-    //   {
-    //     alert("question added");
-    //   },
-    //   error=>
-    //   {
-    //     alert("error")
-    //     console.log("error", error);
-    //   });
     this.service.addQuestion(this.question);
     alert("question added"); 
   }
+
+ collect()
+ {
+    this.questions.push(this.question)
+    alert(this.questions.length);
+
+    this.service.addQuestion(this.question);
+    alert("question added");
+
+    this.questions[0] = null;
+ }
 
 }

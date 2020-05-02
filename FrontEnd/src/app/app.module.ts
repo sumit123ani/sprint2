@@ -7,11 +7,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SortPipe } from './sort.pipe';
 import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './test/test.component';
 import { QuestionComponent } from './question/question.component';
 import { ShowTestComponent } from './show-test/show-test.component';
 import { AttempTestComponent } from './attemp-test/attemp-test.component';
+import { ViewTestComponent } from './view-test/view-test.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { AttempTestComponent } from './attemp-test/attemp-test.component';
     TestComponent,
     QuestionComponent,
     ShowTestComponent,
-    AttempTestComponent
+    AttempTestComponent,
+    ViewTestComponent
   ],
   imports: [
     BrowserModule,

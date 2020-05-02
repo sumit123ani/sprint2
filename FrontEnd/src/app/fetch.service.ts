@@ -15,7 +15,7 @@ user:User = new User();
 question:Question = new Question();
 test:Test = new Test();
 
-questions:Question[];
+questions:Question[]=[];
 
   constructor(private _http:HttpClient) { }
 
@@ -51,13 +51,19 @@ questions:Question[];
 
  getQuestionList(testId:number):Observable<any>
  {
-   let url = "http://localhost:1998/question/"+testId;
+   let url = "http://localhost:1998/question/list/"+testId;
    return this._http.get(url);
  }
 
  addQuestion(question:Question)
  {
-    this.questions.push(question);
+    this.questions.push(question)
+    alert(this.questions[1].questionId)
+ }
+
+ retrievQuest():Question[]
+ {
+  return this.questions;
  }
 
  getAllQuestion():Observable<any>
@@ -97,6 +103,18 @@ questions:Question[];
  {
      let url= "http://localhost:1998/question/update";
      return this._http.put(url, quest, {responseType:'text'});
+ }
+
+ updateTest(test:Test):Observable<any>
+ {
+   let url = "http://localhost:1998/test/update";
+   return this._http.put(url, test, {responseType:'text'});
+ }
+
+ assignTest(test):Observable<any>
+ {
+    let url = "http://localhost:1998/assign/test";
+    return this._http.put(url, test, {responseType:'text'});
  }
 
 }

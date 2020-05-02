@@ -1,11 +1,12 @@
-import { Option } from './option';
+
 
 export class Question {
 
     questionId:number;
     questionTitle:string;
-    option:Option;
-    questionAnswer:number;
+    option:string[] =[];
+    questionAnswer:string;
     questionMarks:number;
-    
+    chosenAnswer:string;
+    marksScored:number;
 }

@@ -1,12 +1,15 @@
 <form #formdata="ngForm" (ngSubmit)="submit()">
-    <select name="select" class="form-control" [(ngModel)]="testType" aria-placeholder="select">
-        <option value="select">select</option>
+    <select name="select" class="form-control" [(ngModel)]="testType" style="float: left; width: fit-content; margin-left: 5%;">
         <option value="java">java</option>
         <option value="sql">sql</option>
         <option value="maths">maths</option>
         <option value="chemistry">chemistry</option>
         <option value="query">query</option>
+        <option value="spring boot">spring boot</option>
+        <option value="spring core">spring core</option>
     </select>
+
+<input type="search" name="serching" [ngModel]="testType" class="form-control" style="float: right; width: 20%; margin-right: 5%;"> 
 
     <br>
     <input type="submit" name="butt" class="btn btn-primary">
@@ -15,7 +18,7 @@
 
 <table class="table table-stripped" style="width: fit-content;">
     <thead class="thead-dark">
-        <tr *ngIf="tests1">
+        <tr *ngIf="tests">
             <th>id</th>
             <th>title</th>
             <th>duration</th>
@@ -25,7 +28,7 @@
         </tr>
     </thead>
 
-        <tr *ngFor="let tst of tests1 ; let i = index">
+        <tr *ngFor="let tst of tests ; let i = index">
             <td>{{tst.testId}}</td>
             <td>{{tst.testTitle}}</td>
             <td>{{tst.testDuration}}</td>

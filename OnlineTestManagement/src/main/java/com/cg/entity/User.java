@@ -10,13 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 
 @Entity
+@DynamicUpdate(true)
+@DynamicInsert(true)
+
 @Table(name="userTable2")
 public class User implements Serializable{
 
+	@NotNull(message = "User Id is mandatory")
 	@Id
 	private BigInteger userId;
+	
+	@NotEmpty(message = "user name is mandetory")
 	@Column
 	private String userName;
 	
@@ -26,12 +38,15 @@ public class User implements Serializable{
 	
 	@Column
     private boolean isAdmin;
+	
 	@Column
 	private String userPassword;
 	
+	@NotNull(message = "mobile number is mandetory")
 	@Column
 	private BigInteger mobile_no;
 	
+	@NotEmpty(message = "email id is mandetory")
 	@Column
 	private String email;
 	

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.cg.dao.OnlineTestDaoI;
@@ -19,8 +20,15 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	OnlineTestDaoI dao;
 	
 	@Override
-	public void createUser(User user) {
+	public void createUser(User user) throws OnlineTestException{
+		try {
 	   dao.createUser(user);
+	   }
+		catch (DataIntegrityViolationException e) {
+		
+			throw new OnlineTestException("id already is");
+		}
+	
 	
 	}
 
@@ -73,7 +81,7 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	}
 
 	@Override
-	public void updateQuestion(Question question) {
+	public void updateQuestion(Question question) throws OnlineTestException {
 		dao.updateQuestion(question);
 		
 	}
@@ -91,7 +99,7 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	}
 
 	@Override
-	public void asignTest(Test test) {
+	public void asignTest(Test test) throws OnlineTestException {
 
         dao.asignTest(test);
 		

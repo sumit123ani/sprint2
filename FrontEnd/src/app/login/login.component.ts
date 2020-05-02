@@ -26,8 +26,6 @@ form:NgForm;
 
  invalidLogin = false;
 
-app:AppComponent;
-
   ngOnInit(): void {
   }
 

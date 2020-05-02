@@ -15,10 +15,10 @@ public interface OnlineTestServiceI {
 	public void createTest(Test test);
 	public void createQuestion(Question question);
 
-	public void asignTest(Test test);
+	public void asignTest(Test test) throws OnlineTestException;
 	
     public String updateUser(User user);	
-    public void updateQuestion(Question question);
+    public void updateQuestion(Question question) throws OnlineTestException;
     public void updateTest(Test test) throws OnlineTestException;
     
 	public User getUser(BigInteger id);

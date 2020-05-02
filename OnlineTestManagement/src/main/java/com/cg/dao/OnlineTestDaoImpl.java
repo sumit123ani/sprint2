@@ -101,7 +101,7 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	}
 
 	@Override
-	public void updateQuestion(Question question) {
+	public void updateQuestion(Question question) throws OnlineTestException {
 
 		Question newQuestion = manager.find(Question.class, question.getQuestionId());
 		
@@ -116,6 +116,10 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		newQuestion.setQuestionAnswer(question.getQuestionAnswer());
 		}
 		
+		else
+		{
+			throw new OnlineTestException("No such question exists");
+		}
 	}
 
 	@Override
@@ -152,10 +156,15 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	}
 
 	@Override
-	public void asignTest(Test test) {
+	public void asignTest(Test test) throws OnlineTestException {
 		
      Test newTest  = manager.find(Test.class, test.getTestId());
+     
+     if(newTest != null)
 		newTest.setTestMarksScored(test.getTestMarksScored());
+     
+     else
+    	 throw new OnlineTestException("no such test to assign");
 	}
 
 	@Override

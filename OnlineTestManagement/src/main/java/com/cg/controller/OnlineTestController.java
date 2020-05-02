@@ -32,29 +32,12 @@ public class OnlineTestController {
 	
 	
 	@PostMapping(value="/user/new", consumes= {"application/json"})
-	public String createUser(@RequestBody User user, BindingResult bindingResult) throws OnlineTestException 
+	public String createUser(@RequestBody User user, BindingResult bindingResult)
 	{
-		 String err ="";
-		
-		 if(bindingResult.hasErrors())
-		 {
-			 List<FieldError> errors = bindingResult.getFieldErrors();
-			 for(FieldError error:errors)
-			 {
-				 err += error.getDefaultMessage() + "<br/>";
-			 }
-			 throw new OnlineTestException(err);
-		 }
-		 
-		 try
-		 {
+
 			 service.createUser(user);
 			 return "user created";
-		 }
-		 catch (DataIntegrityViolationException exception) {
 
-              throw new OnlineTestException("ID already exists");
-		}
 	}
 	
 	
@@ -115,7 +98,7 @@ public class OnlineTestController {
 	
 	
 	@PutMapping(value ="question/update", consumes= {"application/json"})
-	public String updateQuestion(@RequestBody Question question)
+	public String updateQuestion(@RequestBody Question question) throws OnlineTestException
 	{
 		service.updateQuestion(question);
 		return "question updated";
@@ -131,7 +114,7 @@ public class OnlineTestController {
 	
 	
 	@PutMapping(value = "assign/test", consumes = {"application/json"})
-	public String assignTest(@RequestBody Test test)
+	public String assignTest(@RequestBody Test test) throws OnlineTestException
 	{
 		service.asignTest(test);
 		return "test assigned";

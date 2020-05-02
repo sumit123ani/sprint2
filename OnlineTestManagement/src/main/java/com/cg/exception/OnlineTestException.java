@@ -1,13 +1,10 @@
 package com.cg.exception;
 
-public class OnlineTestException extends Exception{
+public class OnlineTestException extends RuntimeException{
 
-	 String msg;
 
 	public OnlineTestException(String msg) {
-		super();
-		this.msg = msg;
-	}
+		super(msg);
 	 
-	
+	}
 }

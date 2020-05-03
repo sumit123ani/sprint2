@@ -1,9 +1,9 @@
+<body>
+<h4 style="text-align: center;font-style: italic;">Add Test<img src="assets/image5.png" width="7%" height="7%" style="margin-left: 10px;"></h4>
 
-<h4> Add test</h4>
+<form #formdata="ngForm" class="form-horizontal" novalidate (ngSubmit)="createTest()">
 
-<form #formdata="ngForm" novalidate (ngSubmit)="createTest()">
-
-<table>
+<table align="center">
 
    <tr>
        <input type="number" name="id" [(ngModel)]="test.testId" placeholder="enter test id" class="form-control" #valid1 = "ngModel" required pattern="[1-9][0-9][0-9]">
@@ -14,7 +14,7 @@
 
    <tr>
     <input type="text" name="name" [(ngModel)]="test.testTitle" placeholder="enter test title" class="form-control" #valid2="ngModel" required>
-    <div style="float: right;" class="alert alert-danger" role="alert" *ngIf="valid2.invalid && valid2.touched">Please enter title</div>
+    <div class="alert alert-danger" role="alert" *ngIf="valid2.invalid && valid2.touched">Please enter title</div>
 </tr>
 <br>
 
@@ -45,6 +45,8 @@
 </table>
 
 <br>
+<div style="text-align: center;">
 <input type="submit" name="butt" class="btn btn-primary" [disabled] = "formdata.invalid">
-
+</div>
 </form>
+</body>

@@ -3,6 +3,9 @@ import { FetchService } from '../fetch.service';
 import { Question } from '../question';
 import { Test } from '../test';
 import { error } from '@angular/compiler/src/util';
+import { AuthenticationService } from '../authentication.service';
+import { User } from '../user';
+import { Result } from '../result';
 
 @Component({
   selector: 'app-attemp-test',
@@ -11,12 +14,14 @@ import { error } from '@angular/compiler/src/util';
 })
 export class AttempTestComponent implements OnInit {
 
-  constructor(private service:FetchService) { }
+  constructor(private service:FetchService, private serv:AuthenticationService) { }
 
   questions:Question[];
   test:Test = new Test();
   question:Question = new Question();
-  answer:any;
+
+  result:Result = new Result();
+  user:User = new User();
 
   noOfQuestion:number;
   currentQuestion:number;
@@ -25,6 +30,8 @@ export class AttempTestComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+   this.user = this.serv.getUser();
 
     this.test = this.service.getTest();
     this.service.getQuestionList(this.test.testId).subscribe(data=>
@@ -75,6 +82,23 @@ export class AttempTestComponent implements OnInit {
     this.service.updateTest(this.test).subscribe(data=>
       {
         alert("test submited successfully")
+
+        this.result.testId = this.test.testId;
+        this.result.userId = this.user.userId;
+        this.result.totalMarks = this.totalMarks;
+        this.result.totalScore = this.totalScore;
+
+        this.service.addResult(this.result).subscribe(data=>
+          {
+            alert("test added successfully, and result submited");
+          },
+          error=>
+          {
+            console.log(error);
+            alert("error");
+            
+          })
+
       },
       error=>
       { 
@@ -86,6 +110,8 @@ export class AttempTestComponent implements OnInit {
 
   calculateTotakMarks()
   {
+    this.totalMarks = 0;
+    this.totalScore =0;
     for(var i =0; i<this.questions.length; i++)
     {
        this.totalMarks += this.questions[i].questionMarks;
@@ -99,9 +125,10 @@ export class AttempTestComponent implements OnInit {
     this.service.updateQuestion(this.questions[i]).subscribe(data=>
       {
         console.log("updated");
+        alert("updated")
       },
       error=>{
-        alert("error");
+        alert("error in question");
         console.log(error);
         
       });

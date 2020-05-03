@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.cg.entity.Question;
+import com.cg.entity.Result;
 import com.cg.entity.Test;
 import com.cg.entity.User;
 import com.cg.exception.OnlineTestException;
@@ -34,11 +35,25 @@ public class OnlineTestController {
 	@PostMapping(value="/user/new", consumes= {"application/json"})
 	public String createUser(@RequestBody User user, BindingResult bindingResult)
 	{
-
 			 service.createUser(user);
 			 return "user created";
-
 	}
+	
+	
+	@GetMapping(value="/user/{id}")
+	public User getUser(@PathVariable BigInteger id)
+	{
+		return service.getUser(id);
+	}
+	
+	
+	@PutMapping(value="user/update",consumes= {"application/json"})
+	public String updateUser(@RequestBody User user)
+	{
+		return service.updateUser(user);
+	}
+	
+	
 	
 	
 	@PostMapping(value="/test/new", consumes= {"application/json"})
@@ -49,61 +64,11 @@ public class OnlineTestController {
 	}
 	
 	
-//	@PostMapping(value="/question/new", consumes= {"application/json"})
-//	public String createQuestion(@RequestBody Question question)
-//	{
-//		service.createQuestion(question);
-//		return "question created";
-//	}
-
-	
 	@GetMapping(value="/test")
 	public List<Test> getTestList()
 	{
 		return service.getAllTest();
 	}
-	
-	
-	@GetMapping(value="/user/{id}")
-	public User getUser(@PathVariable BigInteger id)
-	{
-		return service.getUser(id);
-	}
-
-	
-	@GetMapping(value = "/question/list/{testId}")
-	public List<Question> getQuestionList(@PathVariable BigInteger testId)
-	{
-		return service.getQuestionList(testId);
-	}
-	
-	@GetMapping(value = "/question")
-	public List<Question> getAllQuestion()
-	{
-		return service.getAllQuestion();
-	}
-	
-	
-	@GetMapping(value = "/question/{questionId}")
-	public Question getOneQuestion(@PathVariable BigInteger questionId)
-	{
-		return service.getOneQuestion(questionId);
-	}
-	
-	@PutMapping(value="user/update",consumes= {"application/json"})
-	public String updateUser(@RequestBody User user)
-	{
-		return service.updateUser(user);
-	}
-	
-	
-	@PutMapping(value ="question/update", consumes= {"application/json"})
-	public String updateQuestion(@RequestBody Question question) throws OnlineTestException
-	{
-		service.updateQuestion(question);
-		return "question updated";
-	}
-	
 	
 	@PutMapping(value = "test/update", consumes = {"application/json"})
 	public String updateTest(@RequestBody Test test) throws OnlineTestException
@@ -120,11 +85,12 @@ public class OnlineTestController {
 		return "test assigned";
 	}
 	
-	@DeleteMapping(value = "question/delete/{questionId}")
-	public String deleteQuestion(@PathVariable BigInteger questionId)
+	
+	@PutMapping(value = "/add/question/test", consumes = {"application/json"})
+	public String addQuestionToTest(@RequestBody Test test)
 	{
-		service.deleteQuestion(questionId);
-		return "deleted";
+		service.addQuestionTotTest(test);
+		return "question added";
 	}
 	
 	
@@ -133,6 +99,71 @@ public class OnlineTestController {
 	{
 		service.deleteTest(testId);
 		return "deletetd successfully"	;
-		}
+	}
+	
+	
+	
+	
+	@PostMapping(value = "/result/new", consumes = {"application/json"})
+	public String createResult(@RequestBody Result result)
+	{
+		service.createResult(result);
+		return "result created";
+	}
+	
+//	@PostMapping(value="/question/new", consumes= {"application/json"})
+//	public String createQuestion(@RequestBody Question question)
+//	{
+//		service.createQuestion(question);
+//		return "question created";
+//	}
+
+	
+	
+	
+	
+	@GetMapping(value = "/question/list/{testId}")
+	public List<Question> getQuestionList(@PathVariable BigInteger testId)
+	{
+		return service.getQuestionList(testId);
+	}
+	
+//	@GetMapping(value = "/question")
+//	public List<Question> getAllQuestion()
+//	{
+//		return service.getAllQuestion();
+//	}
+	
+	
+	@GetMapping(value = "/question/{questionId}")
+	public Question getOneQuestion(@PathVariable BigInteger questionId)
+	{
+		return service.getOneQuestion(questionId);
+	}
+	
+	
+	
+	@PutMapping(value ="question/update", consumes= {"application/json"})
+	public String updateQuestion(@RequestBody Question question) throws OnlineTestException
+	{
+		service.updateQuestion(question);
+		return "question updated";
+	}
+	
+	
+	
+	
+	
+	
+	
+//	@DeleteMapping(value = "question/delete/{questionId}")
+//	public String deleteQuestion(@PathVariable BigInteger questionId)
+//	{
+//		service.deleteQuestion(questionId);
+//		return "deleted";
+//	}
+	
+	
+	
 }
 

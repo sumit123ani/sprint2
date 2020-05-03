@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Test } from './test';
 import { Question } from './question';
+import { Result } from './result';
 
 @Injectable({
   providedIn: 'root'
@@ -55,10 +56,11 @@ questions:Question[]=[];
    return this._http.get(url);
  }
 
- addQuestion(question:Question)
+ addQuestionToTest(test:Test):Observable<any>
  {
-    this.questions.push(question)
-    alert(this.questions[1].questionId)
+   alert("in")
+    let url = "http://localhost:1998/add/question/test";
+    return this._http.put(url, test, {responseType:'text'});
  }
 
  retrievQuest():Question[]
@@ -66,11 +68,11 @@ questions:Question[]=[];
   return this.questions;
  }
 
- getAllQuestion():Observable<any>
- {
-   let url = "http://localhost:1998/question";
-   return this._http.get(url);
- }
+//  getAllQuestion():Observable<any>
+//  {
+//    let url = "http://localhost:1998/question";
+//    return this._http.get(url);
+//  }
 
   setTest(test:Test)
   {
@@ -92,11 +94,11 @@ questions:Question[]=[];
    return this.question;
  }
 
-  deleteQuestion(id:number):Observable<any>
-  {
-   let url = "http://localhost:1998/question/delete/"+id;
-   return this._http.delete(url, {responseType:'text'});
-  }
+  // deleteQuestion(id:number):Observable<any>
+  // {
+  //  let url = "http://localhost:1998/question/delete/"+id;
+  //  return this._http.delete(url, {responseType:'text'});
+  // }
 
   deleteTest(testId:number):Observable<any>
   {
@@ -120,6 +122,12 @@ questions:Question[]=[];
  {
     let url = "http://localhost:1998/assign/test";
     return this._http.put(url, test, {responseType:'text'});
+ }
+
+ addResult(result:Result)
+ {
+   let url = "http://localhost:1998/result/new";
+   return this._http.post(url, result, {responseType:'text'});
  }
 
 }

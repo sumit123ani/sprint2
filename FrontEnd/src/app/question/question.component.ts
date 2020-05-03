@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Question } from '../question';
 import { NgForm } from '@angular/forms';
 import { FetchService } from '../fetch.service';
+import { Test } from '../test';
 
 
 @Component({
@@ -18,25 +19,31 @@ export class QuestionComponent implements OnInit {
 
   question:Question = new Question();
   questions:Question[] =[];
+  test:Test = new Test();
+
 
   ngOnInit(): void {
+    this.test = this.service.getTest();
   }
 
   createQuestion()
   {
-    this.service.addQuestion(this.question);
-    alert("question added"); 
+    // this.questions[0] = this.question;
+     this.test.testQuestions.push(this.question);
+
+   alert(this.test.testQuestions[0].questionId)
+
+    this.service.addQuestionToTest(this.test).subscribe(data=>
+      {
+         alert("added")
+      },
+      error=>
+      {
+        console.log(error);
+        alert("can't add");
+        
+      });
+   
   }
-
- collect()
- {
-    this.questions.push(this.question)
-    alert(this.questions.length);
-
-    this.service.addQuestion(this.question);
-    alert("question added");
-
-    this.questions[0] = null;
- }
 
 }

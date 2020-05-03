@@ -1,19 +1,26 @@
-<header class="col-sm-12 p-2">
+<!-- <header class="col-sm-12 p-2">
   <h2 style="display: inline;" style="text-align: left;">Online Test</h2>
   <h4 *ngIf="service.isUserLoggedIn()" style="display: inline;"> welcome {{userName}}</h4>
-  <button *ngIf="service.isUserLoggedIn()" class="btn btn-success" (click)="logout()" style="display: inline;">LogOut</button>
+  <button *ngIf="service.isUserLoggedIn()" class="btn btn-success" (click)="logout()" style="display: inline;">LogOut</button> -->
 
-</header>
+<!-- </header> -->
+
+<div class="header" *ngIf="service.isUserLoggedIn()">
+  <h2 style="text-align: center;">Virtual Tech Quiz<img src="assets/image4.jpg" width="7%" height="7%" style="margin-left: 10px;">
+    <h3 style="display: inline; margin-left: 1%;">welcome {{service.getUser().userName}}</h3>
+    <button  class="btn btn-danger" (click)="logout()" style="float: right; margin: 2%;">Logout</button></h2>
+  </div>
 
 <div *ngIf="service.isUserLoggedIn() && service.getUser().isAdmin">
-<nav class="col-sm-12 row p-2 bg-dark"> 
+<!-- <nav class="col-sm-12 row p-2 bg-dark">  -->
   <!-- <a class="nav-item nav-link" routerLink="/register">Register</a> -->
   <!-- <a class="nav-item nav-link" routerLink="/login">Login</a> -->
-  <a  class="nav-item nav-link text-white" routerLink="/" (click)="changeFlag1()">Home</a>
-  <a  class="nav-item nav-link text-white" routerLink="/test" (click)="changeFlag()">Create Test</a>
-  <a  class="nav-item nav-link text-white" routerLink="/viewTest" (click)="changeFlag()">View Test</a>
+  <ul>
+  <li><a  class="nav-item nav-link text-white" routerLink="/" (click)="changeFlag1()">Home</a></li>
+  <li><a  class="nav-item nav-link text-white" routerLink="/test" (click)="changeFlag()">Create Test</a></li>
+  <li><a  class="nav-item nav-link text-white" routerLink="/viewTest" (click)="changeFlag()">View Test</a></li>
   
-  </nav>
+</ul>
 </div>
 
 <div *ngIf="service.isUserLoggedIn() && !service.getUser().isAdmin">
@@ -25,9 +32,10 @@
     </nav>
 </div>
 
-  <br><br>
+  <!-- <br><br> -->
   <router-outlet></router-outlet> 
 
+  <body>
   <div *ngIf="service.isUserLoggedIn() && service.getUser().isAdmin && flag">
     
       <img src="assets/add_test.png" alt="not found" width="100px" height="100px" style="margin-right: 10%;" title="add test" routerLink="/test" (click)="changeFlag()">
@@ -41,4 +49,6 @@
     <img src="assets/assessment.png" alt="not found" width="100px" height="100px" style="margin-left: 10%;">
     
 </div>
-  
+
+<br>
+</body>

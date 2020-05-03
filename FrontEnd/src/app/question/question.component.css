@@ -1,0 +1,13 @@
+
+body{
+  font-size: sans-serif;
+   background: url(/assets/pixel.jpg);
+   background-size: cover;
+   background-attachment: initial;
+ }
+ h1{
+   top: 15%;
+   left: 10%;
+   position: absolute;
+   text-align: center;
+ }

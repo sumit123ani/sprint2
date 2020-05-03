@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import com.cg.entity.Question;
+import com.cg.entity.Result;
 import com.cg.entity.Test;
 import com.cg.entity.User;
 import com.cg.exception.OnlineTestException;
@@ -13,7 +14,10 @@ public interface OnlineTestDaoI {
 	public void createUser(User user);
 	public void createTest(Test test);
 	public void createQuestion(Question question);
-
+    public void createResult(Result result);
+    public void addQuestionToTest(Test test);
+    
+	
 	public void asignTest(Test test) throws OnlineTestException;
 	
 	public String updateUser(User user);

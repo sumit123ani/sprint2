@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dao.OnlineTestDaoI;
 import com.cg.entity.Question;
+import com.cg.entity.Result;
 import com.cg.entity.Test;
 import com.cg.entity.User;
 import com.cg.exception.OnlineTestException;
@@ -24,17 +25,23 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		try {
 	   dao.createUser(user);
 	   }
-		catch (DataIntegrityViolationException e) {
+		catch (DataIntegrityViolationException exception) {
 		
 			throw new OnlineTestException("id already is");
 		}
-	
 	
 	}
 
 	@Override
 	public void createTest(Test test) {
+		try
+		{
 		dao.createTest(test);
+		}
+		catch(DataIntegrityViolationException exception)
+		{
+			throw new OnlineTestException("Test already exists");
+		}
 	}
 
 	@Override
@@ -109,6 +116,19 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	public void deleteTest(int testId) {
 	
 	  dao.deleteTest(testId);	
+	}
+
+	@Override
+	public void createResult(Result result) {
+		
+		dao.createResult(result);
+	}
+
+	@Override
+	public void addQuestionTotTest(Test test) {
+
+         dao.addQuestionToTest(test);
+		
 	}
 
 	

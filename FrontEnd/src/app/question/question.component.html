@@ -1,51 +1,54 @@
-<h4>Add question</h4>
-
-<form #formdata="ngForm" (ngSubmit)="collect()">
-    <table>
-
-          <tr>
-              <input type="number" name="id" placeholder="enter question id" [(ngModel)]="question.questionId" class="form-control" #valid1="ngModel" required pattern="[1-9][0-9][0-9][0-9]">
-              <div class="alert alert-danger" role="alert" *ngIf="valid1.invalid && valid1.touched">invalid Id</div>
-          </tr>
-<br>
-        <tr>
-            <input type="text" style="width: 400px;" name="title" placeholder="enter question title" [(ngModel)]="question.questionTitle" #valid2="ngModel" class="form-control" required>
-            <div class="alert alert-danger" role="alert" *ngIf="valid2.invalid && valid2.touched">invalid Id</div>
-        </tr>
-        <br>
-
-        <tr>
-            <input type="text" name="option1" placeholder="enter option 1" [(ngModel)]="question.option[0]" #valid3="ngModel" class="form-control" required>
-            <div class="alert alert-danger" role="alert" *ngIf="valid3.invalid && valid3.touched">option is required</div>
-        </tr>
-        <br>
-
-        <tr>
-            <input type="text" name="option2" placeholder="enter option 2" [(ngModel)]="question.option[1]" class="form-control" #valid4="ngModel" required>
-            <div class="alert alert-danger" role="alert" *ngIf="valid4.invalid && valid4.touched">option is required</div>
-        </tr>
-        <br>
-
-        <tr>
-            <input type="text" name="option3" placeholder="enter option 3" [(ngModel)]="question.option[2]" class="form-control" #valid5="ngModel" required>
-            <div class="alert alert-danger" role="alert" *ngIf="valid5.invalid && valid5.touched">option is required</div>
-        </tr>
-        <br>
-
-        <tr>
-            <input type="text" name="option4" placeholder="enter option 4" [(ngModel)]="question.option[3]" #valid6="ngModel" class="form-control" required>
-            <div class="alert alert-danger" role="alert" *ngIf="valid6.invalid && valid6.touched">option is required</div>
-        </tr>
-        <br>
-
-        <tr>
-            <input type="number" name="marks" placeholder="enter marks" [(ngModel)]="question.questionMarks" class="form-control" #valid7="ngModel" required>
-            <div class="alert alert-danger" role="alert" *ngIf="valid7.invalid && valid7.touched">required</div>
-        </tr>
-<br>
-    </table>
-
-<input type="submit" name="butt"  value="collect" class="btn btn-primary"> 
-<!-- <a routerLink="/test" class="btn btn-success" (click)="createQuestion()">Add questions to the test</a> -->
-
-</form>
+<body>
+    <h4 style="text-align: center;font-style: italic;">Add Question<img src="assets/image5.png" width="7%" height="7%" style="margin-left: 10px;"></h4>
+    <form #formdata="ngForm" class="form-horizontal" (ngSubmit)="createQuestion()">
+        <table align="center"> 
+            <tr>
+                  <input type="number" name="id" placeholder="enter question id" [(ngModel)]="question.questionId" class="form-control" #valid1="ngModel" required pattern="[1-9][0-9][0-9][0-9]">
+                  <div class="alert alert-danger" role="alert" *ngIf="valid1.invalid && valid1.touched">invalid Id</div>
+              </tr>
+    <br>
+            <tr>
+                <input type="text" style="width: 400px;" name="title" placeholder="enter question title" [(ngModel)]="question.questionTitle" #valid2="ngModel" class="form-control" required>
+                <div class="alert alert-danger" role="alert" *ngIf="valid2.invalid && valid2.touched">invalid Title</div>
+            </tr>
+            <br>
+    
+            <tr>
+                <input type="text" name="option1" placeholder="enter option 1" [(ngModel)]="question.option[0]" #valid3="ngModel" class="form-control" required>
+                <div class="alert alert-danger" role="alert" *ngIf="valid3.invalid && valid3.touched">option is required</div>
+            </tr>
+            <br>
+    
+            <tr>
+                <input type="text" name="option2" placeholder="enter option 2" [(ngModel)]="question.option[1]" class="form-control" #valid4="ngModel" required>
+                <div class="alert alert-danger" role="alert" *ngIf="valid4.invalid && valid4.touched">option is required</div>
+            </tr>
+            <br>
+    
+            <tr>
+                <input type="text" name="option3" placeholder="enter option 3" [(ngModel)]="question.option[2]" class="form-control" #valid5="ngModel" required>
+                <div class="alert alert-danger" role="alert" *ngIf="valid5.invalid && valid5.touched">option is required</div>
+            </tr>
+            <br>
+    
+            <tr>
+                <input type="text" name="option4" placeholder="enter option 4" [(ngModel)]="question.option[3]" #valid6="ngModel" class="form-control" required>
+                <div class="alert alert-danger" role="alert" *ngIf="valid6.invalid && valid6.touched">option is required</div>
+            </tr>
+            <br>
+    
+            <tr>
+                <input type="number" name="marks" placeholder="enter marks" [(ngModel)]="question.questionMarks" class="form-control" #valid7="ngModel" required>
+                <div class="alert alert-danger" role="alert" *ngIf="valid7.invalid && valid7.touched">required</div>
+            </tr>
+    <br>
+        </table>
+    
+    <div style="text-align: center;">
+        <input type="submit" name="butt"  class="btn btn-primary" [disabled]="formdata.invalid"> 
+        </div>
+        <marquee behavior="scroll" direction="right" scrollamount="12" style="font-style: italic;color:red;">"Success is not final; failure is not fatal: It is the courage to continue that counts."</marquee>
+    
+    </form>
+    </body>
+    

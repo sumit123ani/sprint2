@@ -3,6 +3,7 @@ import { Test } from '../test';
 import { NgForm } from '@angular/forms';
 import { FetchService } from '../fetch.service';
 import { Question } from '../question';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-test',
@@ -14,7 +15,7 @@ export class TestComponent implements OnInit {
  @ViewChild("#formdata")
  form:NgForm;
 
-  constructor(private service:FetchService) { }
+  constructor(private service:FetchService, private router:Router) { }
 
   test:Test = new Test();
   flag:boolean = false;
@@ -26,22 +27,15 @@ export class TestComponent implements OnInit {
 
  createTest()
  {
-  this.quest = this.service.retrievQuest();
-  alert(this.quest.length)
 
-  alert(this.quest[0].questionId+" "+this.quest[1].questionId)
-
-  if(this.test.testQuestions.length == 0)
-  {
-
-    alert("please add some question to the test")
-   
-  }
-  else
-  {
     this.service.createTest(this.test).subscribe(data=>
       {    
         alert("test added successfully");
+        alert("now add questions to the test");
+
+        this.service.setTest(this.test);
+        
+        this.router.navigateByUrl("/question");
       },
       error=>
       {
@@ -49,7 +43,7 @@ export class TestComponent implements OnInit {
         console.log("error occured", error);
         
       });
-  }
+  
  }
 
 

@@ -1,0 +1,53 @@
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:#333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #4CAF50;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+.header
+{
+   width: 100%;
+   background-color: rgba(0,0,0,.2);
+}
+
+body{
+    font-size: sans-serif;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+     background: url(/assets/pixel.jpg);
+     background-size: cover;
+     background-attachment: initial;
+     background-repeat: no-repeat;
+     background-size: 100%;
+     background-position: center;
+     background-size: cover;
+   }
+   /* h1{
+     top: 15%;
+     left: 10%;
+     position: absolute;
+     text-align: center;
+   } */

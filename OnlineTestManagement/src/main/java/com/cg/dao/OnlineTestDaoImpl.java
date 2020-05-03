@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.cg.entity.Question;
+import com.cg.entity.Result;
 import com.cg.entity.Test;
 import com.cg.entity.User;
 import com.cg.exception.OnlineTestException;
@@ -33,10 +34,10 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	  manager.persist(test);
 	}
 
-	@Override
-	public void createQuestion(Question question) {
-		manager.persist(question);
-	}
+//	@Override
+//	public void createQuestion(Question question) {
+//		manager.persist(question);
+//	}
 
 	@Override
 	public List<Test> getAllTest() {
@@ -87,12 +88,12 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	}
 
 	
-	@Override
-	public List<Question> getAllQuestion() {
-
-        Query query = manager.createQuery("from Question que");
-		return query.getResultList();
-	}
+//	@Override
+//	public List<Question> getAllQuestion() {
+//
+//        Query query = manager.createQuery("from Question que");
+//		return query.getResultList();
+//	}
 
 	@Override
 	public Question getOneQuestion(BigInteger questionId) {
@@ -114,6 +115,8 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		newQuestion.setQuestionMarks(question.getQuestionMarks());
 		newQuestion.setQuestionTitle(question.getQuestionTitle());
 		newQuestion.setQuestionAnswer(question.getQuestionAnswer());
+		
+	
 		}
 		
 		else
@@ -122,12 +125,12 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		}
 	}
 
-	@Override
-	public void deleteQuestion(BigInteger questionId) {
-		
-		Question question = manager.find(Question.class, questionId);
-		manager.remove(question);
-	}
+//	@Override
+//	public void deleteQuestion(BigInteger questionId) {
+//		
+//		Question question = manager.find(Question.class, questionId);
+//		manager.remove(question);
+//	}
 
 	@Override
 	public void updateTest(Test test) throws OnlineTestException {
@@ -141,10 +144,7 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 			
 			newTest.setStartTime(test.getStartTime());
 			newTest.setEndTime(test.getEndTime());
-			
-			//newTest.setTestMarksScored(test.getTestMarksScored());
-			//newTest.setTestQuestions(test.getTestQuestions());
-			
+			newTest.setTestMarksScored(test.getTestMarksScored());
 			newTest.setTestTotalMarks(test.getTestTotalMarks());
 			
 		}
@@ -155,6 +155,7 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		}
 	}
 
+	
 	@Override
 	public void asignTest(Test test) throws OnlineTestException {
 		
@@ -167,10 +168,45 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
     	 throw new OnlineTestException("no such test to assign");
 	}
 
+	
 	@Override
 	public void deleteTest(int testId) {
 		
 		manager.remove(manager.find(Test.class, testId));
+	}
+
+	@Override
+	public void createResult(Result result) {
+		
+		manager.persist(result);
+	}
+
+	@Override
+	public void createQuestion(Question question) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addQuestionToTest(Test test) {
+
+          Test newTest = manager.find(Test.class, test.getTestId());
+          
+          newTest.setTestQuestions(test.getTestQuestions());
+		
+	}
+
+
+	@Override
+	public List<Question> getAllQuestion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteQuestion(BigInteger questionId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

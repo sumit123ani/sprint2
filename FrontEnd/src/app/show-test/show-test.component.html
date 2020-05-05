@@ -1,22 +1,15 @@
-<form #formdata="ngForm" (ngSubmit)="submit()">
-    <select name="select" class="form-control" [(ngModel)]="testType" style="float: left; width: fit-content; margin-left: 5%;">
-        <option value="java">java</option>
-        <option value="sql">sql</option>
-        <option value="maths">maths</option>
-        <option value="chemistry">chemistry</option>
-        <option value="query">query</option>
-        <option value="spring boot">spring boot</option>
-        <option value="spring core">spring core</option>
-    </select>
-
-<input type="search" name="serching" [ngModel]="testType" class="form-control" style="float: right; width: 20%; margin-right: 5%;"> 
-
+<body>
     <br>
-    <input type="submit" name="butt" class="btn btn-primary">
+    <br>
+<form class="form-inline md-form mr-auto mb-4" style="margin-left: 40%;" (ngSubmit)="submit()">
+<input class="form-control mr-sm-2" type="text" name="serching" [(ngModel)]="testType"> 
+<button class="btn aqua-gradient btn-rounded btn-sm-my-0" type="submit" >Search</button>
+
 </form>
 <br><br>
 
-<table class="table table-stripped" style="width: fit-content;">
+
+<table class="table table-stripped" style="width: fit-content;" align="center">
     <thead class="thead-dark">
         <tr *ngIf="tests">
             <th>id</th>
@@ -25,6 +18,7 @@
             <th>total marks</th>
             <th>start time</th>
             <th>end time</th>
+            <th>Give test</th>
         </tr>
     </thead>
 
@@ -39,3 +33,6 @@
         </tr>
     
 </table>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+</body>

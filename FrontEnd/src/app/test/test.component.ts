@@ -20,7 +20,8 @@ export class TestComponent implements OnInit {
   test:Test = new Test();
   flag:boolean = false;
   quest:Question[] = [];
-
+  msg:string ="";
+  errorMessage:string ="";
 
   ngOnInit(): void {
   }
@@ -30,8 +31,9 @@ export class TestComponent implements OnInit {
 
     this.service.createTest(this.test).subscribe(data=>
       {    
-        alert("test added successfully");
-        alert("now add questions to the test");
+        this.msg = data;
+        alert(this.msg);
+       this.errorMessage = undefined;
 
         this.service.setTest(this.test);
         
@@ -39,7 +41,10 @@ export class TestComponent implements OnInit {
       },
       error=>
       {
-        alert("error")
+        this.errorMessage = JSON.parse(error.error).massege;
+
+        this.msg = undefined;
+        alert(this.errorMessage)
         console.log("error occured", error);
         
       });

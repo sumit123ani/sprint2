@@ -50,15 +50,29 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	}
 
 	@Override
-	public List<Test> getAllTest() {
-		// TODO Auto-generated method stub
+	public List<Test> getAllTest() throws OnlineTestException{
+		try
+		{
 		return dao.getAllTest();
+		}
+		catch (NullPointerException nullException) {
+
+         throw new OnlineTestException("No test avaliable");
+		}
 	}
 
 	@Override
-	public User getUser(BigInteger id) {
-		// TODO Auto-generated method stub
+	public User getUser(BigInteger id) throws OnlineTestException {
+
+		User user = dao.getUser(id);
+        if(user != null)
+        {
 		return dao.getUser(id);
+        }
+        else {
+			
+        	throw new OnlineTestException("No such user exists");
+		}
 	}
 
 	@Override

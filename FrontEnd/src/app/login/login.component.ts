@@ -23,8 +23,8 @@ form:NgForm;
  password:string;
 
  checkUser:User = new User();
-
  invalidLogin = false;
+ 
 
   ngOnInit(): void {
   }

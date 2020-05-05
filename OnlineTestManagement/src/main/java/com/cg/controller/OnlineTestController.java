@@ -33,7 +33,7 @@ public class OnlineTestController {
 	
 	
 	@PostMapping(value="/user/new", consumes= {"application/json"})
-	public String createUser(@RequestBody User user, BindingResult bindingResult)
+	public String createUser(@RequestBody User user)
 	{
 			 service.createUser(user);
 			 return "user created";

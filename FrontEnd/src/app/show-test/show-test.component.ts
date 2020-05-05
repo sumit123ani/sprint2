@@ -17,7 +17,7 @@ export class ShowTestComponent implements OnInit {
   constructor(private service:FetchService, private serv:AuthenticationService) { }
 
   user:User = new User();
-  testType:any;
+  testType:string = "";
   test:Test = new Test();
   tests:Test[];
   tests1:Test[];
@@ -39,12 +39,14 @@ export class ShowTestComponent implements OnInit {
 
   submit()
   {
-    //alert(this.testType)
+    alert(this.testType)
     
-        // alert(this.tests[3].testTitle);
-         this.tests = this.tests.filter((t) => t.testTitle.startsWith("java"));
+        if(this.testType.length != 0)
+          this.tests = this.tests.filter((t) => t.testTitle.startsWith(this.testType));
 
-         alert(this.tests[0].testTitle)
+          else
+           this.ngOnInit();
+        //  alert(this.tests[0].testTitle)
 
   }
 
@@ -75,7 +77,7 @@ export class ShowTestComponent implements OnInit {
             
           },
           error=>{
-              console.log("not successful");
+              console.log("not successful", error);
               
           })
       }

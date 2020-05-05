@@ -35,11 +35,11 @@
   <!-- <br><br> -->
   <router-outlet></router-outlet> 
 
-  <body>
-  <div *ngIf="service.isUserLoggedIn() && service.getUser().isAdmin && flag">
+  <body *ngIf="service.isUserLoggedIn() && flag">
+  <div *ngIf= "service.getUser().isAdmin && flag">
     
       <img src="assets/add_test.png" alt="not found" width="100px" height="100px" style="margin-right: 10%;" title="add test" routerLink="/test" (click)="changeFlag()">
-      <img src="assets/assessment.png" alt="not found" width="100px" height="100px" style="margin-left: 10%;" routerLink="/question" (click)="changeFlag()">
+      <img src="assets/assessment.png" alt="not found" width="100px" height="100px" style="margin-left: 10%;" routerLink="/question" >
 
   </div>
 

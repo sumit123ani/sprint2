@@ -2,11 +2,13 @@ package com.cg.dao;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,8 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	@PersistenceContext
 	EntityManager manager;
 	
+	
+	//
 	@Override
 	public void createUser(User user) {
 		manager.persist(user);
@@ -33,11 +37,6 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	public void createTest(Test test) {
 	  manager.persist(test);
 	}
-
-//	@Override
-//	public void createQuestion(Question question) {
-//		manager.persist(question);
-//	}
 
 	@Override
 	public List<Test> getAllTest() {
@@ -70,15 +69,13 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	}
 
 
-
 	@Override
 	public Test getTest(int id) {
 		
 		return manager.find(Test.class, id);
 	}
 
-	
-	
+
 	
 	@Override
 	public List<Question> getQuestionList(BigInteger testId) {
@@ -87,13 +84,7 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 		return query.getResultList();
 	}
 
-	
-//	@Override
-//	public List<Question> getAllQuestion() {
-//
-//        Query query = manager.createQuery("from Question que");
-//		return query.getResultList();
-//	}
+
 
 	@Override
 	public Question getOneQuestion(BigInteger questionId) {
@@ -188,12 +179,27 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	}
 
 	@Override
-	public void addQuestionToTest(Test test) {
+	public void addQuestionToTest(Test test) throws OnlineTestException{
 
+		try
+		{
           Test newTest = manager.find(Test.class, test.getTestId());
-          newTest.setTestQuestions(null);
+         // newTest.setTestQuestions(null);
+          
+          Set<Question> set = test.getTestQuestions();
+          
+          for(Question question:set) {
+        	  
+           Query query = manager.createNativeQuery("delete from question where question_id ="+question.getQuestionId());
+           System.out.println(query.executeUpdate());
+          }
+          
           newTest.setTestQuestions(test.getTestQuestions());
-		
+		}
+		catch(DataIntegrityViolationException ex)
+		{
+			throw new OnlineTestException("question already exists");
+		}
 	}
 
 

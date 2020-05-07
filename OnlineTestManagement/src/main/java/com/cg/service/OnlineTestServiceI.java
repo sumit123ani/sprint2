@@ -14,13 +14,13 @@ public interface OnlineTestServiceI {
 
 	public void createUser(User user);
 	public void createTest(Test test);
-	public void createQuestion(Question question);
+	
     public void createResult(Result result);
 	public void addQuestionTotTest(Test test);
     
 	public void asignTest(Test test) throws OnlineTestException;
 	
-    public String updateUser(User user);	
+ 	
     public void updateQuestion(Question question) throws OnlineTestException;
     public void updateTest(Test test) throws OnlineTestException;
     
@@ -32,7 +32,6 @@ public interface OnlineTestServiceI {
 	public List<Question> getAllQuestion();
 	public Question getOneQuestion(BigInteger questionId);
 	
-	
-	public void deleteQuestion(BigInteger questionId);
+
 	public void deleteTest(int testId);
 }

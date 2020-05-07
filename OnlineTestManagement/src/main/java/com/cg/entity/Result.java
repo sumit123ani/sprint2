@@ -27,6 +27,9 @@ public class Result {
 	@Column
 	private double totalMarks;
 	
+	@Column
+	private String testTitle;
+	
 	public Result() {
 		super();
 	}
@@ -79,6 +82,16 @@ public class Result {
 		this.totalMarks = totalMarks;
 	}
 
+	
+	public String getTestTitle() {
+		return testTitle;
+	}
+
+	public void setTestTitle(String testTitle) {
+		this.testTitle = testTitle;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Result [userId=" + userId + ", testId=" + testId + ", totalScore=" + totalScore + ", totalMarks="

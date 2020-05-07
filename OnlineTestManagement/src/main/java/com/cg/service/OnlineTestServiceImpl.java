@@ -20,6 +20,9 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	@Autowired
 	OnlineTestDaoI dao;
 	
+	
+	//value of user came from controller(server) and from here it will go to dao layer
+	//and it will be persite in table through entity manager
 	@Override
 	public void createUser(User user) throws OnlineTestException{
 		try {
@@ -32,6 +35,9 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	
 	}
 
+	
+	//value of test came from controller and go to dao layer and 
+	//it will be persiste in table through entity manager
 	@Override
 	public void createTest(Test test) {
 		try
@@ -44,11 +50,9 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		}
 	}
 
-	@Override
-	public void createQuestion(Question question) {
-		dao.createQuestion(question);
-	}
-
+	
+	// user requested to get list of all question
+	// passed to dao layer and it will serach in table and return result
 	@Override
 	public List<Test> getAllTest() throws OnlineTestException{
 		try
@@ -60,7 +64,10 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
          throw new OnlineTestException("No test avaliable");
 		}
 	}
-
+	
+	
+	// user requested to get a user
+	// id is passed to dao layer and it will serach in table and return result
 	@Override
 	public User getUser(BigInteger id) throws OnlineTestException {
 
@@ -75,20 +82,19 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		}
 	}
 
-	@Override
-	public String updateUser(User user) {
-		// TODO Auto-generated method stub
-		return dao.updateUser(user);
-	}
 
 	
-
+//id came from controoler user has requeste to get on question 
+	//id will be passed to dao layer and result will be retuned
 	@Override
 	public List<Question> getQuestionList(BigInteger testId) {
 		
 		return dao.getQuestionList(testId);
 	}
 
+	
+	//user has requeste to get all question 
+	//it will be passed to dao layer and result will be retuned
 	@Override
 	public List<Question> getAllQuestion() {
 		
@@ -107,18 +113,18 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		
 	}
 
-	@Override
-	public void deleteQuestion(BigInteger questionId) {
-		dao.deleteQuestion(questionId);
-		
-	}
 
+	
+	//update request came from user and go to dao layer and 
+	// test details will be updated 
 	@Override
 	public void updateTest(Test test) throws OnlineTestException {
 		
 		dao.updateTest(test);
 	}
 
+	
+	
 	@Override
 	public void asignTest(Test test) throws OnlineTestException {
 
@@ -132,12 +138,18 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 	  dao.deleteTest(testId);	
 	}
 
+	
+	//user requested to put an entry in result table
+	//an object of result passed to dao layer and itt will be created
 	@Override
 	public void createResult(Result result) {
 		
 		dao.createResult(result);
 	}
 
+	//user requested to add question to test 
+	// it passes new test which consits of new questions and it will go to 
+	//dao and test will be updated with new question
 	@Override
 	public void addQuestionTotTest(Test test) {
 

@@ -47,15 +47,6 @@ public class OnlineTestController {
 	}
 	
 	
-	@PutMapping(value="user/update",consumes= {"application/json"})
-	public String updateUser(@RequestBody User user)
-	{
-		return service.updateUser(user);
-	}
-	
-	
-	
-	
 	@PostMapping(value="/test/new", consumes= {"application/json"})
 	public String createTest(@RequestBody Test test)
 	{
@@ -116,15 +107,6 @@ public class OnlineTestController {
 		return "result created";
 	}
 	
-//	@PostMapping(value="/question/new", consumes= {"application/json"})
-//	public String createQuestion(@RequestBody Question question)
-//	{
-//		service.createQuestion(question);
-//		return "question created";
-//	}
-
-	
-	
 	
 	
 	@GetMapping(value = "/question/list/{testId}")
@@ -132,12 +114,7 @@ public class OnlineTestController {
 	{
 		return service.getQuestionList(testId);
 	}
-	
-//	@GetMapping(value = "/question")
-//	public List<Question> getAllQuestion()
-//	{
-//		return service.getAllQuestion();
-//	}
+
 	
 	
 	@GetMapping(value = "/question/{questionId}")
@@ -156,18 +133,7 @@ public class OnlineTestController {
 	}
 	
 	
-	
-	
-	
-	
-	
-//	@DeleteMapping(value = "question/delete/{questionId}")
-//	public String deleteQuestion(@PathVariable BigInteger questionId)
-//	{
-//		service.deleteQuestion(questionId);
-//		return "deleted";
-//	}
-	
+
 	
 	
 }

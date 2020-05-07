@@ -50,7 +50,6 @@ form:NgForm;
           this.invalidLogin = true;
         }
      
-
        }  
     },
     error=>

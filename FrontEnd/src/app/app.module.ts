@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './test/test.component';
-import { QuestionComponent } from './question/question.component';
 import { ShowTestComponent } from './show-test/show-test.component';
 import { AttempTestComponent } from './attemp-test/attemp-test.component';
 import { ViewTestComponent } from './view-test/view-test.component';
@@ -24,11 +23,10 @@ import { UpdateTestComponent } from './update-test/update-test.component';
     RegisterComponent,
     SortPipe,
     TestComponent,
-    QuestionComponent,
     ShowTestComponent,
     AttempTestComponent,
     ViewTestComponent,
-    UpdateTestComponent
+    UpdateTestComponent,
   ],
   imports: [
     BrowserModule,

@@ -70,6 +70,13 @@ public class OnlineTestController {
 		return service.getAllTest();
 	}
 	
+	
+	@GetMapping(value="/test/{id}")
+	public Test getOneTest(@PathVariable int id)
+	{
+		return service.getOneTest(id);
+	}
+	
 	@PutMapping(value = "test/update", consumes = {"application/json"})
 	public String updateTest(@RequestBody Test test) throws OnlineTestException
 	{
@@ -100,8 +107,6 @@ public class OnlineTestController {
 		service.deleteTest(testId);
 		return "deletetd successfully"	;
 	}
-	
-	
 	
 	
 	@PostMapping(value = "/result/new", consumes = {"application/json"})

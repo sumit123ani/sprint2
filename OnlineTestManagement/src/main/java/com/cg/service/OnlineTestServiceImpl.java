@@ -145,5 +145,11 @@ public class OnlineTestServiceImpl implements OnlineTestServiceI {
 		
 	}
 
+	@Override
+	public Test getOneTest(int id) {
+		
+		return dao.getTest(id);
+	}
+
 	
 }

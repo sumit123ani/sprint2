@@ -72,9 +72,9 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 
 
 	@Override
-	public Test getTest(BigInteger id) {
+	public Test getTest(int id) {
 		
-		return null;
+		return manager.find(Test.class, id);
 	}
 
 	
@@ -191,7 +191,7 @@ public class OnlineTestDaoImpl implements OnlineTestDaoI {
 	public void addQuestionToTest(Test test) {
 
           Test newTest = manager.find(Test.class, test.getTestId());
-          
+          newTest.setTestQuestions(null);
           newTest.setTestQuestions(test.getTestQuestions());
 		
 	}

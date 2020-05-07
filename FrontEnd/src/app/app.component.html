@@ -12,9 +12,7 @@
   </div>
 
 <div *ngIf="service.isUserLoggedIn() && service.getUser().isAdmin">
-<!-- <nav class="col-sm-12 row p-2 bg-dark">  -->
-  <!-- <a class="nav-item nav-link" routerLink="/register">Register</a> -->
-  <!-- <a class="nav-item nav-link" routerLink="/login">Login</a> -->
+
   <ul>
   <li><a  class="nav-item nav-link text-white" routerLink="/" (click)="changeFlag1()">Home</a></li>
   <li><a  class="nav-item nav-link text-white" routerLink="/test" (click)="changeFlag()">Create Test</a></li>
@@ -24,12 +22,12 @@
 </div>
 
 <div *ngIf="service.isUserLoggedIn() && !service.getUser().isAdmin">
-    <nav class="col-sm-12 row p-2 bg-dark text-white">
+    <ul>
        
-      <a class="nav-item nav-link text-white" routerLink="" (click)="changeFlag1()">Home</a>
-      <a  class="nav-item nav-link text-white" routerLink="/showTest" (click)="changeFlag()">Show Test</a>
+     <li> <a class="nav-item nav-link text-white" routerLink="" (click)="changeFlag1()">Home</a></li>
+     <li>  <a  class="nav-item nav-link text-white" routerLink="/showTest" (click)="changeFlag()">Show Test</a></li>
 
-    </nav>
+    </ul>
 </div>
 
   <!-- <br><br> -->

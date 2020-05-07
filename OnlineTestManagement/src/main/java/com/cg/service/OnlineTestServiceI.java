@@ -28,6 +28,7 @@ public interface OnlineTestServiceI {
 	public List<Test> getAllTest();
 	public List<Question> getQuestionList(BigInteger testId);
 	
+	public Test getOneTest(int id);
 	public List<Question> getAllQuestion();
 	public Question getOneQuestion(BigInteger questionId);
 	
